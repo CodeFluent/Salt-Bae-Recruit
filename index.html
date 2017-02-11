@@ -1,6 +1,33 @@
 <html>
+    <head>
+        <script type="text/javascript">
+            function alertFilename()
+            {
+                var thefile = document.getElementById('thefile');
+                var filename = thefile.value;
 
-<p>
-    yea
-</p>
+                console.log(filename.replace(/.*[\/\\]/, ''));
+
+                // var obj_url = window.URL.createObjectURL(blob);
+                // var iframe = document.getElementById('viewer');
+                // iframe.setAttribute('src', obj_url);
+                // window.URL.revokeObjectURL(obj_url)
+
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <form>
+            <input type="file" id="thefile" onchange="alertFilename()" accept="application/pdf" />
+            <input type="button" onclick="alertFilename()" value="submit" />
+        </form>
+
+        <iframe id="viewer" src="" width="100%" height="100%">
+        This browser does not support PDFs. Please download the PDF to view it: <a href="/pdf/sample-3pp.pdf">Download PDF</a>
+        </iframe>
+
+
+    </body>
 </html>
