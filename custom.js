@@ -1,10 +1,5 @@
 console.log("custom.js loaded!");
 
-var url = "http://cdn.mozilla.net/pdfjs/helloworld.pdf";
-
-function processPDF () {
-
-}
 
 
 function xhrRequest () {
@@ -23,11 +18,16 @@ function xhrRequest () {
             PDFJS.getDocument(typedarray).then(function(pdf) {
 
                 var total = pdf.numPages;
-                console.log(total);
+                for(i = 1; i <= total; i++) {
+                    pdf.getPage(i).then(function(page){
+                        var n = page.pageNumber;
+                        page.getTextContent().then(function(textContent) {
+                            console.log(textContent);
+                            console.log(textContent.str);
+                        })
+                    })
+                }
 
-                // Example function
-                var hello = this.getHelloNumber(total);
-                console.log(hello);
 
             });
         };
