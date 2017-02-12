@@ -3,67 +3,40 @@ console.log("custom.js loaded!");
 var url = "http://cdn.mozilla.net/pdfjs/helloworld.pdf";
 
 function processPDF () {
-    var pdf = new PDFJS.PDFDoc(data);
-    var total = pdf.numPages; // get the number of pages.
 
-    // for(i = 1; i <= total; i++) {
-    //     var page = pdf.getPage(i);
-    //
-    // }
-
-    // PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
-    //
-    //     pdf.getData().then(function(arrayBuffer) {
-    //         var pdfraw = String.fromCharCode.apply(null, arrayBuffer);
-    //
-    //         // Operate on your raw pdf here...
-    //
-    //         console.log(pdfraw);
-    //
-    //     });
-    // });
 }
 
-// /**
-//  * sets the filename of the iframe.
-//  * @return {[type]} [description]
-//  */
-// function getSource () {
-//     var thefile = document.getElementById('fileButton');
-//     var thefilename = thefile.value; // get the filename.
-//
-//     thefilename = thefilename.replace(/.*[\/\\]/, ''); // use regex to get only the filename.
-//
-//     var src = document.getElementById('input').setAttribute("src", thefilename);
-//
-// }
 
 function xhrRequest () {
 
-    var submit = document.getElementById('uploadButtonOnClick');
+        // get file from input
+        var file = event.target.files[0];
 
-    submit.addEventListener("message", function(event){
-    if (event.source != processor.contentWindow) return;
+        var fileReader = new FileReader();
 
-    switch (event.data){
-      case "ready":
-        var xhr = new XMLHttpRequest;
+        fileReader.onload = function () {
 
-        xhr.open('GET', input.getAttribute("src"), true); // doesn't work since we don't need the input attr.
-        xhr.responseType = "arraybuffer";
-        xhr.onload = function(event) {
-          processor.contentWindow.postMessage(this.response, "*");
+            // turn pdf into a typedarray.
+            var typedarray = new Uint8Array(this.result);
+
+            // handle all data processing here. pass to functions if necessary.
+            PDFJS.getDocument(typedarray).then(function(pdf) {
+
+                var total = pdf.numPages;
+                console.log(total);
+
+                // Example function
+                var hello = this.getHelloNumber(total);
+                console.log(hello);
+
+            });
         };
-        xhr.send();
-        console.log("ssubmit");
 
-      break;
+        fileReader.readAsArrayBuffer(file);
+}
 
-      default:
-        output.textContent = event.data.replace(/\s+/g, " ");
-        console.log("fail");
-      break;
-        }
-    }, true);
+function getHelloNumber(number) {
 
+    var append = "Hello " + number;
+    return append;
 }
