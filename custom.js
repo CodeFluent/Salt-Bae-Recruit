@@ -17,13 +17,21 @@ function xhrRequest () {
             // handle all data processing here. pass to functions if necessary.
             PDFJS.getDocument(typedarray).then(function(pdf) {
 
+                // prepare for callback hell.
                 var total = pdf.numPages;
+
+                // loop through each page and get the text content.
+                // map the array elements from textContent and get
                 for(i = 1; i <= total; i++) {
                     pdf.getPage(i).then(function(page){
                         var n = page.pageNumber;
                         page.getTextContent().then(function(textContent) {
-                            console.log(textContent);
-                            console.log(textContent.str);
+                            // console.log(textContent); // all strings in file.
+                            textContent.items.map(function(item){
+                                // console.log(item.str); // all individual strings.
+
+
+                            });
                         })
                     })
                 }
@@ -35,8 +43,22 @@ function xhrRequest () {
         fileReader.readAsArrayBuffer(file);
 }
 
-function getHelloNumber(number) {
+function getKeyWords() {
 
-    var append = "Hello " + number;
-    return append;
+    var keywords = ['JAVA', 'Python', 'C++', 'C#', 'NET', 'HTML', 'SQL', 'CSS', 'JS'];
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "https://raw.githubusercontent.com/CodeFluent/Salt-Bae-Recruit/master/sample_run_results.json",
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+        success: function (msg) {
+            console.log(msg);
+        }
+        });
+
+
+
 }
