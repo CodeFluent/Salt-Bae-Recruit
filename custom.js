@@ -1,6 +1,25 @@
 console.log("custom.js loaded!");
 
+var keywords = ['JAVA', 'Python', 'C++', 'C#', 'NET', 'HTML', 'SQL', 'CSS', 'JS'];
+function getKeyWords() {
 
+    keywords = ['JAVA', 'Python', 'C++', 'C#', 'NET', 'HTML', 'SQL', 'CSS', 'JS'];
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "https://raw.githubusercontent.com/CodeFluent/Salt-Bae-Recruit/master/sample_run_results.json",
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+        success: function (msg) {
+            console.log(msg);
+        }
+        });
+
+
+
+}
 
 function xhrRequest () {
 
@@ -28,7 +47,14 @@ function xhrRequest () {
                         page.getTextContent().then(function(textContent) {
                             // console.log(textContent); // all strings in file.
                             textContent.items.map(function(item){
-                                // console.log(item.str); // all individual strings.
+                              for(k=0;k<=9;k++){
+                                if(item.str == keywords[k]){
+                                  console.log("WE HAVE A MATCH" + item.str);
+                                }
+
+                              }
+                              console.log(item.str); // all individual strings.
+
 
 
                             });
@@ -43,22 +69,22 @@ function xhrRequest () {
         fileReader.readAsArrayBuffer(file);
 }
 
-function getKeyWords() {
-
-    var keywords = ['JAVA', 'Python', 'C++', 'C#', 'NET', 'HTML', 'SQL', 'CSS', 'JS'];
-
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: "https://raw.githubusercontent.com/CodeFluent/Salt-Bae-Recruit/master/sample_run_results.json",
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-        },
-        success: function (msg) {
-            console.log(msg);
-        }
-        });
-
-
-
-}
+// function getKeyWords() {
+//
+//     var keywords = ['JAVA', 'Python', 'C++', 'C#', 'NET', 'HTML', 'SQL', 'CSS', 'JS'];
+//
+//     $.ajax({
+//         type: 'GET',
+//         dataType: 'json',
+//         url: "https://raw.githubusercontent.com/CodeFluent/Salt-Bae-Recruit/master/sample_run_results.json",
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             console.log(jqXHR);
+//         },
+//         success: function (msg) {
+//             console.log(msg);
+//         }
+//         });
+//
+//
+//
+// }
