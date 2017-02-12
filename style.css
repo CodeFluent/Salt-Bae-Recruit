@@ -1,0 +1,14 @@
+body{
+	text-align: center;
+}
+
+#uploads{
+	border: 1px solid black;
+	margin-left: 500px;
+	margin-right: 500px;
+}
+
+#upload_title{
+	text-align: left;
+	margin-left: 100px;
+}
