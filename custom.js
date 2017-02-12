@@ -2,15 +2,34 @@ console.log("custom.js loaded!");
 
 var url = "http://cdn.mozilla.net/pdfjs/helloworld.pdf";
 
+function processPDF () {
+    var pdf = new PDFJS.PDFDoc(data);
+    var total = pdf.numPages; // get the number of pages.
 
-PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+    // for(i = 1; i <= total; i++) {
+    //     var page = pdf.getPage(i);
+    //
+    // }
 
-    pdf.getData().then(function(arrayBuffer) {
-        var pdfraw = String.fromCharCode.apply(null, arrayBuffer);
+    // PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+    //
+    //     pdf.getData().then(function(arrayBuffer) {
+    //         var pdfraw = String.fromCharCode.apply(null, arrayBuffer);
+    //
+    //         // Operate on your raw pdf here...
+    //
+    //         console.log(pdfraw);
+    //
+    //     });
+    // });
+}
 
-        // Operate on your raw pdf here...
+function getSource () {
+    var thefile = document.getElementById('fileButton');
+    var thefilename = thefile.value; // get the filename.
 
-        console.log(pdfraw);
+    thefilename = thefilename.replace(/.*[\/\\]/, ''); // use regex to get only the filename.
 
-    });
-});
+    var src = document.getElementById('input').setAttribute("src", thefilename);
+
+}
