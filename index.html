@@ -1,71 +1,49 @@
 <html>
-    <head>
 
-
-<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC2yAgq9th1cWtdTKSYWheCf2AbQYcymco",
-    authDomain: "salt-bae-recruit.firebaseapp.com",
-    databaseURL: "https://salt-bae-recruit.firebaseio.com",
-    storageBucket: "salt-bae-recruit.appspot.com",
-    messagingSenderId: "855209943720"
-  };
-  firebase.initializeApp(config);
-
-  // Get elements
-  var uploader = document.getElementById('uploader');
-  var fileButton = document.getElementById('fileButton');
-
-  //Listen for file selection
-  fileButton.addEventListener('change', function(e)){
-    //Get file
-    var file = e.target.files[0];
-
-    //Create a storage ref
-    var storageRef firebase.storage.ref('resumes/' + file.name);
-
-    Upload file
-    var task = storageRef.put(file);
-
-
-  }
-</script>
-
-<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-messaging.js"></script>
-
-<!-- Leave out Storage -->
-<!-- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-storage.js"></script> -->
-
-<script>
-  var config = {
-    // ...
-  };
-  firebase.initializeApp(config);
-</script>
 <head>
-  <title="Salt Bae Resume">
-  <link rel="stylesheet" href="style.css">
+  <title>Salt Bae Recruitment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
-<p>
-    yea
-</p>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC2yAgq9th1cWtdTKSYWheCf2AbQYcymco",
+        authDomain: "salt-bae-recruit.firebaseapp.com",
+        databaseURL: "https://salt-bae-recruit.firebaseio.com",
+        storageBucket: "salt-bae-recruit.appspot.com",
+        messagingSenderId: "855209943720"
+      };
+
+      firebase.initializeApp(config);
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-messaging.js"></script>
+
+    <!-- Leave out Storage -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-storage.js"></script> -->
+
+    <script src="custom.js"></script>
+
 <body>
 
 <div>
-<h2>Upload Resume</h2>
-<label class="upload-group">
-  <input type="file" value="upload" id="fileButton">
-</label>
-<button type="button" class="btn btn-primary" id="uploadButtonOnClick" onclick="uploadFile()">SUBMIT</button>
+    <h2>Upload Resume</h2>
+
+    <label class="upload-group">
+      <input type="file" value="upload" id="fileButton">
+    </label>
+
+    <button type="button" class="btn btn-primary" id="uploadButtonOnClick">SUBMIT</button>
 
 </div>
 
 </body>
+
 
 </html>
