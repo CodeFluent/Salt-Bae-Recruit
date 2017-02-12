@@ -24,12 +24,46 @@ function processPDF () {
     // });
 }
 
-function getSource () {
-    var thefile = document.getElementById('fileButton');
-    var thefilename = thefile.value; // get the filename.
+// /**
+//  * sets the filename of the iframe.
+//  * @return {[type]} [description]
+//  */
+// function getSource () {
+//     var thefile = document.getElementById('fileButton');
+//     var thefilename = thefile.value; // get the filename.
+//
+//     thefilename = thefilename.replace(/.*[\/\\]/, ''); // use regex to get only the filename.
+//
+//     var src = document.getElementById('input').setAttribute("src", thefilename);
+//
+// }
 
-    thefilename = thefilename.replace(/.*[\/\\]/, ''); // use regex to get only the filename.
+function xhrRequest () {
 
-    var src = document.getElementById('input').setAttribute("src", thefilename);
+    var submit = document.getElementById('uploadButtonOnClick');
+
+    submit.addEventListener("message", function(event){
+    if (event.source != processor.contentWindow) return;
+
+    switch (event.data){
+      case "ready":
+        var xhr = new XMLHttpRequest;
+
+        xhr.open('GET', input.getAttribute("src"), true); // doesn't work since we don't need the input attr.
+        xhr.responseType = "arraybuffer";
+        xhr.onload = function(event) {
+          processor.contentWindow.postMessage(this.response, "*");
+        };
+        xhr.send();
+        console.log("ssubmit");
+
+      break;
+
+      default:
+        output.textContent = event.data.replace(/\s+/g, " ");
+        console.log("fail");
+      break;
+        }
+    }, true);
 
 }

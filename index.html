@@ -37,12 +37,11 @@
     <h2>Upload Resume</h2>
 
     <label class="upload-group">
-      <input type="file" value="upload" accept="application/pdf" id="fileButton" onchange="getSource()">
+      <input type="file" value="upload" accept="application/pdf" id="fileButton" >
     </label>
 
-    <button type="button" class="btn btn-primary" id="uploadButtonOnClick" onclick="getSource()">SUBMIT</button>
+    <button type="button" class="btn btn-primary" id="uploadButtonOnClick" onclick="xhrRequest()">SUBMIT</button>
 
-    <iframe id="input" src=""></iframe>
 
 </div>
 
